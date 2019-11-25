@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.mycompany.app</groupId>
+	<artifactId>my-app</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.raml.jaxrs</groupId>
+				<artifactId>raml-to-jaxrs-maven-plugin</artifactId>
+				<version>3.0.7</version>
+				<dependencies>
+	                <dependency>
+	                    <groupId>org.raml.jaxrs</groupId>
+	                    <artifactId>jaxrs-code-generator</artifactId>
+	                    <version>3.0.7</version>
+	                </dependency>
+	            </dependencies>
+				
+	            <configuration>
+	                <ramlFile>${project.build.resources[0].directory}/test.raml</ramlFile>
+	                <resourcePackage>example.resources</resourcePackage>
+	                <modelPackage>example.model</modelPackage>
+	                <supportPackage>example.support</supportPackage>
+	                <generateTypesWith>
+	                    <value>jackson</value>
+	                </generateTypesWith>
+	            </configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
